@@ -1,0 +1,101 @@
+
+<form id="quote-gen">
+<label>How many panels do you have?</label>
+<input type="number" name="panel-count" min="1" max="71"><br>
+
+<p>
+1-8 Panels: $14 Per Panel<br>
+9-20 Panels: $12 Per Panel <br>
+21-30 Panels: $8 Per Panel <br>
+31-49 Panels: $7 Per Panel <br>
+50-70 Panels: $5 Per Panel <br>
+71+ Panels: Commercial. Contact us for estimate. </p>
+
+<br><label>What type of structure are your solar panels installed on?</label>  <br>
+<input type="radio" name="structure" value="home" id="home-panels">Home Roof Top<br>
+<input type="radio" name="structure" value="commercial">Commercial Building Roof Top<br>
+<input type="radio" name="structure" value="packing-covers">Packing Covers<br>
+<input type="radio" name="structure" value="ground">Ground<br>
+<div id="quote-gen-story-input" style="display: none">
+  <br><label>What story are they mounted on?</label> <br>
+  <input type="radio" name="level" value="1">1st<br>
+  <input type="radio" name="level" value="2">2nd<br>
+  <input type="radio" name="level" value="3">3rd<br>
+  <input type="radio" name="level" value="4">4th<br>
+</div>
+<br><label>Is there access to a water spigot/faucet?</label> <br>
+<input type="radio" name="water" value="access">Yes<br>
+<input type="radio" name="water" value="no-access">No<br>
+<br><label>How often do you want your solar panels cleaned?</label> <br>
+<input type="radio" name="frequency" value="bi-monthly">Bi-Monthly (Every 2 weeks)<br>
+<input type="radio" name="frequency" value="monthly">Monthly<br>
+<input type="radio" name="frequency" value="quarterly">Quarterly (Every 3 months)<br>
+<input type="radio" name="frequency" value="semi-annualy">Semi-Annualy (Twice a year)<br>
+<input type="radio" name="frequency" value="annualy">Annualy (Once a year)<br>
+<input type="radio" name="frequency" value="whenever">Whenever Needed<br>
+<br><label>Where did you here from us?</label> <br>
+<input type="text" name="referrer"><br>
+<br><label>Additional Details?</label> <br>
+<input type="text" name="additional-details"><br>
+</form>
+<h1 id="quote-gen-price"> </h1>
+
+<script>
+$('#quote-gen').on('change', function(e){
+
+  var number = jQuery('input[name="panel-count"]').val();
+  var structure = jQuery('input[name="structure"]:checked').val();
+  var level = jQuery('input[name="level"]:checked').val();
+  var water = jQuery('input[name="water"]:checked').val();
+  var frequency = jQuery('input[name="frequency"]:checked').val();
+  var referrer = jQuery('input[name="referrer"]').val();
+  var details = jQuery('input[name="additional-details"]').val();
+
+  console.log(number, structure, level, water, frequency, referrer, details);
+
+  if (structure === 'home') {
+    jQuery('#quote-gen-story-input').attr('style', '');
+    console.log('show');
+  } else {
+    jQuery('#quote-gen-story-input').attr('style', 'display: none');
+    console.log('hide');
+  }
+
+  if
+  (
+    number && water && frequency &&
+    ((structure === 'home' && level) || (structure))
+  ) {
+
+    var total = 120;
+    if (number <= 8) {
+      total += number * 14;
+    } else if (number <= 20) {
+      total += number * 12;
+    } else if (number <= 30) {
+      total += number * 8;
+    } else if (number <= 49) {
+      total += number * 7;
+    } else if (number <= 70) {
+      total += number * 5;
+    } else {
+      jQuery('#quote-gen-price').text('Contact us for a commercial estimate.');
+      return;
+    }
+    if (water === 'no-access') {
+      total += 120;
+    }
+    if (structure === 'home') {
+      var levelCosts = {
+        '1':0,
+        '2':100,
+        '3':150,
+        '4':200
+      }
+      total += levelCosts[level];
+    }
+    jQuery('#quote-gen-price').text('$'+total);
+
+  }
+});
+</script>
