@@ -48,7 +48,7 @@ jQuery('#quote-gen').on('change', function(e){
       }
       total += levelCosts[level];
     }
-    jQuery('#quote-gen-price').text('$'+total);
+    jQuery('#quote-gen-price').text('Total Cost: $'+total);
 
   }
 });
