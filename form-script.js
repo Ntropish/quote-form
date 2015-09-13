@@ -8,14 +8,11 @@ jQuery('#quote-gen').on('change', function(e){
   var referrer = jQuery('input[name="referrer"]').val();
   var details = jQuery('input[name="additional-details"]').val();
 
-  console.log(number, structure, level, water, frequency, referrer, details);
 
   if (structure === 'home') {
     jQuery('#quote-gen-story-input').attr('style', '');
-    console.log('show');
   } else {
     jQuery('#quote-gen-story-input').attr('style', 'display: none');
-    console.log('hide');
   }
 
   if
