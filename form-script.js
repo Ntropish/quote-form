@@ -6,7 +6,7 @@ jQuery('#quote-gen').on('change', function(e){
   var water = jQuery('input[name="water"]:checked').val();
   var frequency = jQuery('input[name="frequency"]:checked').val();
   var referrer = jQuery('input[name="referrer"]').val();
-  var details = jQuery('input[name="additional-details"]').val();
+  var details = jQuery('textarea[name="additional-details"]').val();
 
 
   if (structure === 'home') {
