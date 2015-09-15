@@ -50,23 +50,23 @@ jQuery('#quote-gen').on('change', function(e){
     }
     var finalText = '';
     if (frequency==='bi-monthly') {
+      total = Math.ceil(total * 0.8);
       finalText = 'Cost: $'+total+' per clean, twice a month.';
-      total = Math.ceil(total * 0.8);
     } else if (frequency==='monthly') {
-      finalText = 'Cost: $'+total+' per clean, once a month.';
       total = Math.ceil(total * 0.82);
+      finalText = 'Cost: $'+total+' per clean, once a month.';
     } else if (frequency==='quarterly') {
-      finalText = 'Cost: $'+total+' per clean, four times per year.';
       total = Math.ceil(total * 0.85);
+      finalText = 'Cost: $'+total+' per clean, four times per year.';
     } else if (frequency==='semi-annually') {
-      finalText = 'Cost: $'+total+' per clean, two times per year.';
       total = Math.ceil(total * 0.9);
+      finalText = 'Cost: $'+total+' per clean, two times per year.';
     } else if (frequency==='annually') {
-      finalText = 'Cost: $'+total+' per clean, once per year.';
       total = Math.ceil(total * 0.95);
+      finalText = 'Cost: $'+total+' per clean, once per year.';
     } else if (frequency==='whenever') {
-      finalText = 'Cost: $'+total+' per clean, as needed.';
       total = Math.ceil(total * 0.8);
+      finalText = 'Cost: $'+total+' per clean, as needed.';
     }
     jQuery('#quote-gen-price').text(finalText);
 
