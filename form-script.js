@@ -65,7 +65,7 @@ jQuery('#quote-gen').on('change', function(e){
       total = Math.ceil(total * 0.95);
       finalText = 'Cost: $'+total+' per clean, once per year.';
     } else if (frequency==='whenever') {
-      total = Math.ceil(total * 0.8);
+      total = Math.ceil(total * 1);
       finalText = 'Cost: $'+total+' per clean, as needed.';
     }
     jQuery('#quote-gen-price').text(finalText);
