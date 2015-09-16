@@ -9,6 +9,7 @@ jQuery('#quote-gen').on('change', function(e){
   var details = jQuery('textarea[name="additional-details"]').val();
 
 
+
   if (structure === 'home') {
     jQuery('#quote-gen-story-input').attr('style', '');
   } else {
@@ -69,6 +70,39 @@ jQuery('#quote-gen').on('change', function(e){
       finalText = 'Cost: $'+total+' per clean, as needed.';
     }
     jQuery('#quote-gen-price').text(finalText);
+
+  }
+});
+
+jQuery('.quote-gen-contact-us').on('click', function(){
+  jQuery('.quote-gen-contact-details').attr('style', '');
+});
+
+jQuery('.quote-gen-submit').on('click', function(){
+  var name = jQuery('.quote-gen-name').val();
+  var address = jQuery('.quote-gen-address').val();
+  var phone = jQuery('.quote-gen-number').val();
+  var email = jQuery('.quote-gen-email').val();
+
+  if (!name) {
+    jQuery('.quote-gen-message').text('You are missing a name.');
+  } else if (!address) {
+    jQuery('.quote-gen-message').text('You are missing an address.');
+  } else if (!phone) {
+    jQuery('.quote-gen-message').text('You are missing a phone number.');
+  } else if (!email) {
+    jQuery('.quote-gen-message').text('You are missing an E-Mail.');
+  } else if (!number) {
+    jQuery('.quote-gen-message').text('You are missing the panel count.');
+  } else if (!structure) {
+    jQuery('.quote-gen-message').text('You are missing the structure the panels are mounted on.');
+  } else if (structure === 'home' && !level) {
+    jQuery('.quote-gen-message').text('You are missing the level the panels are mounted on.');
+  } else if (!water) {
+    jQuery('.quote-gen-message').text('You are missing the water access.');
+  } else if (!frequency) {
+    jQuery('.quote-gen-message').text('You are missing the cleaning frequency.');
+  } else {
 
   }
 });
