@@ -1,3 +1,5 @@
+var quotePrice = 0;
+
 jQuery('#quote-gen').on('change', function(e){
 
   var number = jQuery('input[name="panel-count"]').val();
@@ -70,15 +72,24 @@ jQuery('#quote-gen').on('change', function(e){
       finalText = 'Cost: $'+total+' per clean, as needed.';
     }
     jQuery('#quote-gen-price').text(finalText);
-
+    quotePrice = total;
   }
 });
 
 jQuery('.quote-gen-contact-us').on('click', function(){
   jQuery('.quote-gen-contact-details').attr('style', '');
+  jQuery('.quote-gen-contact-us').attr('style', 'display: none');
 });
 
 jQuery('.quote-gen-submit').on('click', function(){
+  var number = jQuery('input[name="panel-count"]').val();
+  var structure = jQuery('input[name="structure"]:checked').val();
+  var level = jQuery('input[name="level"]:checked').val();
+  var water = jQuery('input[name="water"]:checked').val();
+  var frequency = jQuery('input[name="frequency"]:checked').val();
+  var referrer = jQuery('input[name="referrer"]').val();
+  var details = jQuery('textarea[name="additional-details"]').val();
+
   var name = jQuery('.quote-gen-name').val();
   var address = jQuery('.quote-gen-address').val();
   var phone = jQuery('.quote-gen-number').val();
@@ -103,6 +114,43 @@ jQuery('.quote-gen-submit').on('click', function(){
   } else if (!frequency) {
     jQuery('.quote-gen-message').text('You are missing the cleaning frequency.');
   } else {
+    var message = '<h3>Quote Report</h3><ul style="list-style: none">' +
+      '<li>Number of panels:'+number+'</li>'+
+      '<li>Type of Structure:'+structure+'</li>'+
+      '<li>Mounting Level:'+level+'</li>'+
+      '<li>Water Access:'+water+'</li>'+
+      '<li>Cleaning Frequency:'+frequency+'</li>'+
+      '<li>Referrer:'+referrer+'</li>'+
+      '<li>Aditional Information:'+details+'</li>'+
+      '<li>Customer Name:'+name+'</li>'+
+      '<li>Customer Address:'+address+'</li>'+
+      '<li>Customer Phone Number:'+phone+'</li>'+
+      '<li>Customer EMail:'+email+'</li></ul>' +
+      '<h4>Quote: $'+quotePrice+'</h4>';
 
+    jQuery.ajax({
+      type: 'POST',
+      url: 'https://mandrillapp.com/api/1.0/messages/send.json',
+      data: {
+        'key': '_XfDfhk8dEFodBjl1c96_g',
+        'message': {
+          'from_email': 'ju5t1n5t0n3@gmail.com',
+          'to': [
+              {
+                'email': 'sales@solarmaintenanceco.com',
+                'name': 'solar',
+                'type': 'to'
+              }
+            ],
+          'autotext': 'true',
+          'subject': 'Quote Report',
+          'html': message
+        }
+      }
+    }).done(function(response){
+      if (response[0].status === 'sent') {
+        jQuery('#quote-gen-price').text('Your information was recieved!');
+      }
+    });
   }
-});
+});  //src="https://rawgit.com/Ntropish/quote-form/master/form-script.js"
