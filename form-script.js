@@ -159,6 +159,8 @@
         '<li>Customer EMail:'+email+'</li></ul>' +
         '<h4>Quote: $'+quotePrice+'</h4>';
 
+      jQuery('#quote-gen-price').text('Sending email...');
+
       jQuery.ajax({
         type: 'POST',
         url: 'https://mandrillapp.com/api/1.0/messages/send.json',
@@ -180,7 +182,7 @@
         }
       }).done(function(response){
         if (response[0].status === 'sent') {
-          jQuery('#quote-gen-price').text('Your information was recieved!');
+          jQuery('#quote-gen-price').text('Successfully sent!');
         }
       });
     }
