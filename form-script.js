@@ -79,6 +79,7 @@
       }
   }
 
+  var sent = false;
   var quotePrice = 0;
   var frequency = null;
   var number = null;
@@ -120,6 +121,11 @@
     //var frequency = jQuery('input[name="frequency"]:checked').val();
     //var referrer = jQuery('input[name="referrer"]').val();
     //var details = jQuery('textarea[name="additional-details"]').val();
+
+    if (sent) {
+      return;
+    }
+    sent = true;
 
     var name = jQuery('.quote-gen-name').val();
     var address = jQuery('.quote-gen-address').val();
