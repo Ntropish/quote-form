@@ -92,7 +92,7 @@
   var details = null;
 
   jQuery('button[name="frequency"]').on('click', function(e){
-    frequency = e.target.value;
+    frequency = $(this)[0].value;
     jQuery('button[name="frequency"]:not([value="'+frequency+'"])').attr('style', '');
     jQuery('button[name="frequency"]').filter('[value="'+frequency+'"]').attr('style', 'border: 8px solid rgb(242,102,33)');
     updatePrice();

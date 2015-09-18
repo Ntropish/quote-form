@@ -31,12 +31,12 @@
 <br><br><label>How often do you want your solar panels cleaned?</label> <br>
 <div style="text-align: left;  display: inline-block; width: 40em">
   <div id="quote-gen-frequency">
-  <button type="button" name="frequency" value="bi-monthly"> Bi-Monthly <br>(Every 2 weeks) <br> <p class="price"/> </button>
-  <button type="button" name="frequency" value="monthly"> Monthly <br> <p class="price"/></button>
-  <button type="button" name="frequency" value="quarterly"> Quarterly <br>(Every 3 months) <br> <p class="price"/></button>
-  <button type="button" name="frequency" value="semi-annually"> Semi-Annually <br>(Twice a year) <br> <p class="price"/></button>
-  <button type="button" name="frequency" value="annually"> Annually <br>(Once a year) <br> <p class="price"/></button>
-  <button type="button" name="frequency" value="whenever"> Whenever Needed <br> <p class="price"/></button>
+  <button type="button" name="frequency" value="bi-monthly">Bi-Monthly<br>(Every 2 weeks)<br><h4/></button>
+  <button type="button" name="frequency" value="monthly">Monthly<br><h4/></button>
+  <button type="button" name="frequency" value="quarterly">Quarterly<br>(Every 3 months)<br><h4/></button>
+  <button type="button" name="frequency" value="semi-annually">Semi-Annually<br>(Twice a year)<br><h4/></button>
+  <button type="button" name="frequency" value="annually">Annually<br>(Once a year)<br><h4/></button>
+  <button type="button" name="frequency" value="whenever">Whenever Needed<br><h4/></button>
   </div>
 </div>
 
@@ -86,6 +86,7 @@
 
 <script>
 jQuery = $;
+
 (function(){
   function updatePrice(){
 
@@ -131,12 +132,12 @@ jQuery = $;
           total += levelCosts[level];
         }
         var finalText = '';
-        jQuery('button[name="frequency"]').filter('[value="bi-monthly"]').children('p').text('$'+Math.ceil(total*0.8));
-        jQuery('button[name="frequency"]').filter('[value="monthly"]').children('p').text('$'+Math.ceil(total*0.82));
-        jQuery('button[name="frequency"]').filter('[value="quarterly"]').children('p').text('$'+Math.ceil(total*0.85));
-        jQuery('button[name="frequency"]').filter('[value="semi-annually"]').children('p').text('$'+Math.ceil(total*0.9));
-        jQuery('button[name="frequency"]').filter('[value="annually"]').children('p').text('$'+Math.ceil(total*0.95));
-        jQuery('button[name="frequency"]').filter('[value="whenever"]').children('p').text('$'+Math.ceil(total));
+        jQuery('button[name="frequency"]').filter('[value="bi-monthly"]').children('h4').text('$'+Math.ceil(total*0.8));
+        jQuery('button[name="frequency"]').filter('[value="monthly"]').children('h4').text('$'+Math.ceil(total*0.82));
+        jQuery('button[name="frequency"]').filter('[value="quarterly"]').children('h4').text('$'+Math.ceil(total*0.85));
+        jQuery('button[name="frequency"]').filter('[value="semi-annually"]').children('h4').text('$'+Math.ceil(total*0.9));
+        jQuery('button[name="frequency"]').filter('[value="annually"]').children('h4').text('$'+Math.ceil(total*0.95));
+        jQuery('button[name="frequency"]').filter('[value="whenever"]').children('h4').text('$'+Math.ceil(total));
         if (frequency) {
           if (frequency==='bi-monthly') {
             total = Math.ceil(total * 0.8);
@@ -179,9 +180,9 @@ jQuery = $;
   var details = null;
 
   jQuery('button[name="frequency"]').on('click', function(e){
-    frequency = e.target.value;
+    frequency = $(this)[0].value;
     jQuery('button[name="frequency"]:not([value="'+frequency+'"])').attr('style', '');
-    jQuery('button[name="frequency"]').filter('[value="'+frequency+'"]').attr('style', 'border: 8px solid red');
+    jQuery('button[name="frequency"]').filter('[value="'+frequency+'"]').attr('style', 'border: 8px solid rgb(242,102,33)');
     updatePrice();
   });
 
@@ -253,9 +254,9 @@ jQuery = $;
         type: 'POST',
         url: 'https://mandrillapp.com/api/1.0/messages/send.json',
         data: {
-          'key': '_XfDfhk8dEFodBjl1c96_g',
+          'key': 'yBiwQSj8pLLqjl5S1K9sUg',
           'message': {
-            'from_email': 'ju5t1n5t0n3@gmail.com',
+            'from_email': 'sales@solarmaintenanceco.com',
             'to': [
                 {
                   'email': 'sales@solarmaintenanceco.com',
@@ -276,6 +277,5 @@ jQuery = $;
     }
   });  //src="https://rawgit.com/Ntropish/quote-form/master/form-script.js"
 })();
-
 
 </script>
